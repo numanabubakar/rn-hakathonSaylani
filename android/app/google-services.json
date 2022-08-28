@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "846230685108",
+    "project_id": "numan5887-8a98b",
+    "storage_bucket": "numan5887-8a98b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:846230685108:android:4677fb576996a37f16dee1",
+        "android_client_info": {
+          "package_name": "com.numan5887"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "846230685108-au7oma3ufgcod4m52um5gi08kg0ofd6h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXdk6fHMMFwqhtLcPpRaZTcOkGB5t59so"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "846230685108-au7oma3ufgcod4m52um5gi08kg0ofd6h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
