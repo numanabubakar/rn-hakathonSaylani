@@ -28,7 +28,7 @@ export default function Register({navigation}) {
     const handleRegister=()=>{
       setIsProcess(true)
       const {fullName,userName,email,password,phoneNo}=state ;
-      if(!fullName){
+      if(!fullName || fullName.length < 4){
         setIsProcess(false)
         return(
       
@@ -42,7 +42,7 @@ export default function Register({navigation}) {
           })
           )
       }
-      else if(!userName){
+      else if(!userName || userName.length < 4){
         setIsProcess(false)
         return(
       
@@ -63,7 +63,7 @@ export default function Register({navigation}) {
           Toast.show({
             type: 'error',
             text1: "Phone No ERROR",
-            text2: 'Phone Number Must be Upto 5 Digit',
+            text2: 'Phone Number Must be Upto 6 Digit',
             position: 'top',
             visibilityTime: 3000,
             bottomOffset: 30
@@ -84,14 +84,14 @@ export default function Register({navigation}) {
           })
           )
       }
-      else if(!password){
+      else if(!password || password.length < 7){
         setIsProcess(false)
         return(
       
           Toast.show({
             type: 'error',
             text1: "Password ERROR",
-            text2: 'Please Add Password',
+            text2: 'Password Must be Upto 7 character or Digits',
             position: 'top',
             visibilityTime: 3000,
             bottomOffset: 30
@@ -125,7 +125,7 @@ export default function Register({navigation}) {
           })
         }
     
-       if (error.code === 'auth/invalid-email') {
+     else  if (error.code === 'auth/invalid-email') {
         Toast.show({
           type:'error',
           text1: "Invalid Email",
@@ -135,9 +135,8 @@ export default function Register({navigation}) {
           bottomOffset:30
           
         })
-          console.log('That email address is invalid!');
         }
-        if(error.Code === "auth/weak-password"){
+     else if(error.code === "auth/weak-password"){
           return (
             Toast.show({
               type:'error',
@@ -184,14 +183,13 @@ export default function Register({navigation}) {
             .doc(user.uid)
             .set(formData)
             .then(() => {
-                console.log('User added!');
                 dispatch({ type: "LOGIN", payload: { user } })
                 setIsProcess(false)
                 Toast.show({
                   type:'success',
                   text1: "Account Created Successfully",
                   position:'top',
-                  visibilityTime:3000,
+                  visibilityTime:4000,
                   bottomOffset:30
                   
                 })

@@ -3,9 +3,10 @@ import React from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
-import {  Text } from 'react-native-paper'
+import {  Text,Avatar } from 'react-native-paper'
 import MyCarousel from '../../../components/MyCarousel'
 import logo from '../../../assets/Images/logo.png'
+
 
 
 export default function Home({navigation}) {
@@ -19,10 +20,13 @@ export default function Home({navigation}) {
     <SafeAreaView style={{  flex: 1, backgroundColor: '#fff' }}>
         <View style={{padding:20}}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <Ionicons onPress={()=>navigation.openDrawer()} name="reorder-three-outline" size={32}></Ionicons>
+          <Ionicons onPress={()=>navigation.openDrawer()} name="reorder-three-outline" size={40}></Ionicons>
 
           <Image source={logo} style={{width:80,height:40}} />
-          <Ionicons name="person-circle-outline" size={32}  onPress={()=>navigation.navigate('Profile')}  ></Ionicons>
+          <TouchableOpacity onPress={()=>navigation.navigate('Profile')}>
+
+          <Avatar.Icon icon='account-circle-outline' color='#fff' style={{backgroundColor:'#f28a89'}}  size={40}     ></Avatar.Icon>
+          </TouchableOpacity>
 
         </View>
         </View>
@@ -35,7 +39,7 @@ export default function Home({navigation}) {
         <TouchableOpacity style={{flexDirection:'row',justifyContent:'space-between'}} onPress={()=>navigation.navigate('Filter')}>
           <View style={{ backgroundColor: '#F4F8F9', flexDirection: 'row',borderRadius:10 ,width:'83%'}}>
             <Ionicons name='search-outline' size={20} style={{ padding: 10,marginTop:2 }} />
-            <TextInput  placeholder='Search...'/>
+            <Text style={{ paddingVertical: 10,marginTop:2,color:'#ccc' }}> Search....</Text>
           </View>
           <View style={{backgroundColor:'#F28a89',width:"15%",padding:1 ,justifyContent:'center',alignItems:'center',borderRadius:10}}>
 <View>

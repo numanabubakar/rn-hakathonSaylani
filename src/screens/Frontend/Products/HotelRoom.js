@@ -1,4 +1,4 @@
-import { View,Image, ScrollView, StyleSheet, Dimensions,TextInput,ActivityIndicator } from 'react-native'
+import { View,Image, ScrollView, StyleSheet, Dimensions,TextInput,ActivityIndicator,TouchableOpacity } from 'react-native'
 import {Button, Text} from 'react-native-paper'
 import React, { useEffect, useState } from 'react'
 import firestore from '@react-native-firebase/firestore';
@@ -6,7 +6,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import logo from "../../../assets/Images/logo.png";
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
-import { TouchableOpacity } from 'react-native-gesture-handler';
+
+
 const {width: screenWidth} = Dimensions.get('window');
 export default function HotelRoom({navigation}) {
 const [products,setProducts]=useState([])
@@ -49,18 +50,21 @@ const [isLoading,setIsLoading ]=useState(true)
           <Ionicons  name="arrow-back-circle" color='#Fff' size={32}></Ionicons>
 
         </View>
-        <View style={{flexDirection:'row',justifyContent:'space-between',paddingVertical:20}}>
+        <TouchableOpacity style={{flexDirection:'row',justifyContent:'space-between',paddingVertical:20}} onPress={()=>navigation.navigate('Filter')}>
           <View style={{ backgroundColor: '#F4F8F9', flexDirection: 'row',borderRadius:10 ,width:'83%'}}>
-            <Ionicons name='search-outline' size={20} style={{ padding: 10,marginTop:2 }} />
-            <TextInput  placeholder='Search...'/>
+            <Ionicons name='search-outline' size={20} style={{ padding: 10,marginTop:2 }} 
+            
+            />
+            <Text style={{ paddingVertical: 10,marginTop:2,color:'#ccc' }}> Search..</Text>
+            
           </View>
           <View style={{backgroundColor:'#F28a89',width:"15%",padding:1 ,justifyContent:'center',alignItems:'center',borderRadius:10}}>
-<TouchableOpacity>
+<View>
 
 <Ionicons name='options-outline' color='#fff' size={20} />
-</TouchableOpacity>
+</View>
           </View>
-        </View>
+        </TouchableOpacity>
         <View style={{flexDirection:'row',paddingHorizontal:5,justifyContent:'center',alignItems:'center'}}>
 <FontAwesome5 name='hotel' color='#F28A89' style={{paddingVertical:15,paddingHorizontal:3}} size={30}/>
             <Text variant='headlineLarge' style={{fontFamily:'Poppins-Bold',textAlign:'center',paddingVertical:20}}> Hotel Rooms </Text>

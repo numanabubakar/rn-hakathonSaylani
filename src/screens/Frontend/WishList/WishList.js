@@ -1,9 +1,8 @@
-import { View,Image, ScrollView, StyleSheet, Dimensions, Platform } from 'react-native'
-import {Text} from 'react-native-paper'
+import { View,Image, ScrollView, StyleSheet, Dimensions, Platform ,TouchableOpacity} from 'react-native'
+import {Text,Avatar} from 'react-native-paper'
 import React from 'react'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import { useFavContext } from '../../../context/FavouriteContext';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import logo from '../../../assets/Images/logo.png'
 const {width: screenWidth} = Dimensions.get('window');
 export default function Wishlist({navigation}) {
@@ -12,10 +11,12 @@ console.log(favHouses.length)
   return (
         <ScrollView style={{backgroundColor:'#fff',padding:20}} >
           <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <Ionicons onPress={()=>navigation.openDrawer()} name="reorder-three-outline" size={32}></Ionicons>
+          <Ionicons onPress={()=>navigation.openDrawer()} name="reorder-three-outline" size={40}></Ionicons>
           <Image source={logo} style={{width:80,height:40}} />
-          <Ionicons name="person-circle-outline" size={32} onPress={()=>navigation.navigate('Profile')} ></Ionicons>
+          <TouchableOpacity onPress={()=>navigation.navigate('Profile')}>
 
+<Avatar.Icon icon='account-circle-outline' color='#fff' style={{backgroundColor:'#f28a89'}}  size={40}     ></Avatar.Icon>
+</TouchableOpacity>
         </View>
         <View style={{paddingTop:25,flexDirection:'row',justifyContent:'center',alignItems:'center',borderBottomWidth:1,borderBottomColor:'#ccc9',paddingBottom:10}}>
 <Ionicons  name='heart' color='#f28a89'  size={35} />

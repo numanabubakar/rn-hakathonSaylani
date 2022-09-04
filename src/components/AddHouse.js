@@ -65,7 +65,7 @@ setIsProcess(false)
         const imageUrl = await storage()
           .ref(`images/${image.fileName}`)
           .getDownloadURL();
-        console.log(imageUrl);
+        // console.log(imageUrl);
         AddProductData(imageUrl)
       })
       .catch(err => {
@@ -98,7 +98,7 @@ else if(!Title){
 
     Toast.show({
       type: 'error',
-      text1: "Title ERROR",
+      text1: "TITLE ERROR",
       text2: 'Please Add Title',
       position: 'top',
       visibilityTime: 3000,
@@ -112,7 +112,7 @@ else if(!Location){
 
     Toast.show({
       type: 'error',
-      text1: "Location ERROR",
+      text1: "LOCATION ERROR",
       text2: 'Please Add Location',
       position: 'top',
       visibilityTime: 3000,
@@ -126,7 +126,7 @@ else if(!Price){
 
     Toast.show({
       type: 'error',
-      text1: "Price ERROR",
+      text1: "PRICE ERROR",
       text2: 'Please Add Price',
       position: 'top',
       visibilityTime: 3000,
@@ -140,7 +140,7 @@ else if(!Desc){
 
     Toast.show({
       type: 'error',
-      text1: "Description ERROR",
+      text1: "DESCRIPTION ERROR",
       text2: 'Please Add Description',
       position: 'top',
       visibilityTime: 3000,
@@ -154,7 +154,7 @@ else if(!NoofBedrooms){
 
     Toast.show({
       type: 'error',
-      text1: "Bedrooms ERROR",
+      text1: "BEDROOMS ERROR",
       text2: 'Please Add Bedrooms',
       position: 'top',
       visibilityTime: 3000,
@@ -168,7 +168,7 @@ else if(!Area){
 
     Toast.show({
       type: 'error',
-      text1: "Area ERROR",
+      text1: "AREA ERROR",
       text2: 'Please Add Area',
       position: 'top',
       visibilityTime: 3000,
@@ -182,7 +182,7 @@ else if(!kitchens){
 
     Toast.show({
       type: 'error',
-      text1: "kitchens ERROR",
+      text1: "KITCHENS ERROR",
       text2: 'Please Add kitchens',
       position: 'top',
       visibilityTime: 3000,
@@ -196,7 +196,7 @@ else if(!baths){
 
     Toast.show({
       type: 'error',
-      text1: "Baths ERROR",
+      text1: "BATHS ERROR",
       text2: 'Please Add Baths',
       position: 'top',
       visibilityTime: 3000,
@@ -204,14 +204,14 @@ else if(!baths){
     })
     )
 }
-else if(!phoneNo){
+else if(!phoneNo || phoneNo.length < 10){
   setIsProcess(false)
   return(
 
     Toast.show({
       type: 'error',
-      text1: "Contact No ERROR",
-      text2: 'Please Add contact number',
+      text1: "CONTACT NUMBER ERROR",
+      text2: 'Contact Number Must be 11 Digits',
       position: 'top',
       visibilityTime: 3000,
       bottomOffset: 30
@@ -235,12 +235,12 @@ else if(!phoneNo){
       phoneNo: phoneNo
 
     };
-    console.log(ProductData);
+    // console.log(ProductData);
     firestore()
       .collection('Products')
       .add(ProductData)
       .then(() => {
-        console.log('User added!');
+        // console.log('User added!');
         setIsProcess(false)
         Toast.show({
           type: 'success',
@@ -351,7 +351,7 @@ else if(!phoneNo){
               data={data}
               search={false}
               dropdownStyles={{ backgroundColor: '#fff', borderRadius: 0, borderWidth: 0, marginBottom: 5, marginTop: 0, width: '78%' }}
-              boxStyles={{ borderRadius: 3, backgroundColor: '#FFF', marginBottom: 5, borderWidth: 0, width: '73%', fontFamily: 'Poppins-Bold' }} //override default styles
+              boxStyles={{ borderRadius: 3, backgroundColor: '#FFF', marginBottom: 5, borderWidth: 0, width: '78%', fontFamily: 'Poppins-Bold' }} //override default styles
             />
           </View>
 
@@ -360,7 +360,7 @@ else if(!phoneNo){
             mode="fill"
             label={'No Of Bedrooms'}
             onChangeText={(val) => handleChange('NoofBedrooms', val)}
-            keyboardType="numbers-and-punctuation"
+            keyboardType="number-pad"
             activeUnderlineColor='#F28A89'
             left={<TextInput.Icon name='bed' />}
             activeOutlineColor='#F28A89'
@@ -369,22 +369,22 @@ else if(!phoneNo){
           <View style={{ flexDirection: 'row' }}>
 
             <TextInput
-              style={[styles.input, { width: 145 }]}
+              style={[styles.input, { width: '50%' }]}
               mode="fill"
               label={'Baths'}
               onChangeText={(val) => handleChange('baths', val)}
-              keyboardType="numbers-and-punctuation"
+              keyboardType="number-pad"
               activeUnderlineColor='#F28A89'
               left={<TextInput.Icon name='bathtub-outline' />}
               activeOutlineColor='#F28A89'
               placeholderTextColor='#F28A89'
             />
             <TextInput
-              style={[styles.input, { width: 145, marginLeft: 5 }]}
+              style={[styles.input, { width: '48%', marginLeft: 5 }]}
               mode="fill"
               label={'Kitchens'}
               onChangeText={(val) => handleChange('kitchens', val)}
-              keyboardType="numbers-and-punctuation"
+              keyboardType="number-pad"
               activeUnderlineColor='#F28A89'
               left={<TextInput.Icon name='food-fork-drink' />}
               activeOutlineColor='#F28A89'
@@ -429,7 +429,7 @@ else if(!phoneNo){
 
           />
           <TouchableOpacity activeOpacity={0.7} onPress={handleAddHouse}>
-            <Button mode='contained' disabled={isProcess} buttonColor='#023047' icon="home" style={styles.btn} loading={isProcess}> Post House For Sale</Button>
+            <Button mode='contained' disabled={isProcess} buttonColor='#F28A89' icon="home" style={styles.btn} loading={isProcess}> Post House For Sale</Button>
           </TouchableOpacity>
         </View>
       </View>

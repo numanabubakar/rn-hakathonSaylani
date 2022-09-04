@@ -52,8 +52,7 @@ const [isLoading,setIsLoading ]=useState(true)
             <Ionicons name='search-outline' size={20} style={{ padding: 10,marginTop:2 }} 
             
             />
-            <TextInput  placeholder='Search...' 
-             />
+            <Text style={{ paddingVertical: 10,marginTop:2,color:'#ccc' }}> Search..</Text>
             
           </View>
           <View style={{backgroundColor:'#F28a89',width:"15%",padding:1 ,justifyContent:'center',alignItems:'center',borderRadius:10}}>

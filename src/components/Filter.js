@@ -8,7 +8,8 @@ import {
   SafeAreaView,
   FlatList,
   ScrollView,
-  TextInput
+  TextInput,
+  ActivityIndicator
 } from 'react-native';
 import { Button ,Text} from 'react-native-paper';
 import React, { useEffect, useState } from 'react';
@@ -28,6 +29,7 @@ export default function Filter({ navigation }) {
   const [products, setProducts] = useState([]);
   const [isFocused, setIsFocused] = useState(false);
   const [newData, setNewData] = useState('');
+  const [isLoading,setIsLoading ]=useState(true)
 
   
   const handleSearch = (event) => {
@@ -51,6 +53,7 @@ export default function Filter({ navigation }) {
           array.push(BannerData);
         });
         setProducts(array);
+        setIsLoading(false)
       });
   };
   useEffect(() => {
@@ -60,6 +63,7 @@ export default function Filter({ navigation }) {
   const renderItem = ({ item }) => {
     return (
       <View >
+         
         <TouchableOpacity style={styles.item}   >
           <View style={styles.imageContainer}>
 
@@ -133,37 +137,10 @@ export default function Filter({ navigation }) {
             </TouchableOpacity>
           </View>
         </View>
-        {/* <View style={{
-          paddingHorizontal: 20,
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          borderRadius: 7,
-          marginTop: 20,
-        }}>
-          <TextInput mode="outlined"
-            left={<TextInput.Icon name={'magnify'} />}
-            right={isFocused ? <TextInput.Icon name={'close'} /> : ''}
-            style={{ backgroundColor: '#fff', width: '80%', padding: 2 }} iconColor={'#000000'} placeholder="Find Property..."
-            onChangeText={(event) => handleSearch(event)} onPressIn={() => setIsFocused(false)} />
-          <TouchableOpacity activeOpacity={0.6}
-            style={{
-              backgroundColor: '#000000',
-              width: '17%',
-              height: 55,
-              marginTop: 5,
-              justifyContent: 'center',
-              alignItems: 'center',
-              borderRadius: 7,
-            }}
-            onPress={handleFilterIcon}>
-            {isFilterPressed ?
-              <Ionicons name={'close'} color="#fff" size={27} onPress={() => setIsFilterPressed(false)} />
-              : <Ionicons name={'options-outline'} color="#fff" size={27} />
-            }
-          </TouchableOpacity>
-        </View> */}
-       
+
+        {isLoading ?  <View style={{justifyContent:'center',alignItems:'center',flex:1,padding:20}}>
+      <ActivityIndicator size='large' color='#F28A89' />
+</View> :
         <View style={{ flex: 1 }}>
           <View style={styles.itemContainer}>
             <FlatList style={styles.flatList}
@@ -174,6 +151,7 @@ export default function Filter({ navigation }) {
             />
           </View>
         </View>
+}
       </View>
     </SafeAreaView>
   );

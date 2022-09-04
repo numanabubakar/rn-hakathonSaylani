@@ -18,7 +18,7 @@ export default function AuthContextProvider(props) {
     const [state, dispatch] = useReducer(reducer, initialState)
     useEffect(() => {
         auth().onAuthStateChanged(async (user) => {
-            console.log(user)
+            // console.log(user)
             if (user) {
                 // console.log(user)
                 const userData = (await firestore().collection('users').doc(user.uid).get()).data();

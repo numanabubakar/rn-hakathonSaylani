@@ -3,6 +3,7 @@ import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { useAuthContext } from '../context/AuthContext'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import {Avatar } from 'react-native-paper'
 import Login from '../screens/Auth/Login'
 import Register from '../screens/Auth/Register'
 import ForgetPassword from '../screens/Auth/ForgetPassword'
@@ -34,7 +35,7 @@ export default function AppNavigator() {
 
   const { user, dispatch } = useAuthContext()
   const { favHouses } = useFavContext();
-console.log(user);
+
   const MyTabs = () => {
     return (
       <Tab.Navigator screenOptions={{ headerShown: false, tabBarShowLabel: false, tabBarStyle: { backgroundColor: '#FFE6E7' }, tabBarActiveTintColor: '#F28A89' }}>
@@ -112,10 +113,10 @@ console.log(user);
         <DrawerContentScrollView {...props} style={{ margin: 0, padding: 0 }} showsVerticalScrollIndicator={false}>
           <View style={{ height: 110, width: '100%', borderBottomWidth: 1, borderBottomColor: '#ccc', }}>
             <View style={{ padding: 10, flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center' }}>
-              <Ionicons name='person-circle-outline' size={70} />
+            <Avatar.Icon icon='account-circle-outline' color='#fff' style={{backgroundColor:'#f28a89'}}    ></Avatar.Icon>
               <View>
-                <Text style={{ fontFamily: 'Poppins-Bold' ,}}> {user.fullName}</Text>
-                <Text style={{ fontFamily: 'Poppins-Regular', fontSize: 10 }}> {user.email}</Text>
+                <Text style={{ fontFamily: 'Poppins-Bold' ,marginLeft:5}}> {user.fullName}</Text>
+                <Text style={{ fontFamily: 'Poppins-Regular', fontSize: 10,marginLeft:5 }}> {user.email}</Text>
               </View>
             </View>
           </View>
@@ -127,14 +128,14 @@ console.log(user);
         <View style={{ padding: 20, alignItems: 'flex-start', borderTopWidth: 1, borderColor: "#ccc", }}>
           <TouchableOpacity style={{ paddingVertical: 15 }}>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Ionicons name='share-social-outline' size={22} />
-              <Text style={{ fontSize: 15, marginLeft: 5, fontFamily: 'Poppins-Regular' }}>Tell a Friend</Text>
+              <Ionicons name='share-social-outline' color={'#023047'} size={22} />
+              <Text style={{ fontSize: 15, marginLeft: 5, fontFamily: 'Poppins-Regular',color:'#023047' }}>Tell a Friend</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity style={{ paddingVertical: 15 }} onPress={HandleLogout}>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-              <Ionicons name='exit-outline' size={22} />
-              <Text style={{ fontSize: 15, marginLeft: 5, fontFamily: 'Poppins-Regular', }}>Sign Out</Text>
+              <Ionicons name='exit-outline' color={"#023047"} size={22} />
+              <Text style={{ fontSize: 15, marginLeft: 5, fontFamily: 'Poppins-Regular',color:'#023047' }}>Sign Out</Text>
             </View>
           </TouchableOpacity>
 

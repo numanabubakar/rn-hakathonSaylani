@@ -1,10 +1,9 @@
-import { View, Image, ScrollView, StyleSheet, Dimensions, TextInput, ActivityIndicator } from 'react-native'
+import { View, Image, ScrollView, StyleSheet, Dimensions,  ActivityIndicator,TouchableOpacity } from 'react-native'
 import { Text,Button } from 'react-native-paper'
 import React, { useEffect, useState } from 'react'
 import firestore from '@react-native-firebase/firestore';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useFavContext } from '../../../context/FavouriteContext';
 import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import logo from "../../../assets/Images/logo.png";
@@ -57,18 +56,21 @@ export default function RentHouse({ navigation }) {
         <Image source={logo} style={{width:80,height:40}} />
           <Ionicons  name="arrow-back-circle" color='#Fff' size={32}></Ionicons>
       </View>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 20 }}>
-        <View style={{ backgroundColor: '#F4F8F9', flexDirection: 'row', borderRadius: 10, width: '83%' }}>
-          <Ionicons name='search-outline' size={20} style={{ padding: 10, marginTop: 2 }} />
-          <TextInput placeholder='Search...' />
-        </View>
-        <View style={{ backgroundColor: '#F28a89', width: "15%", padding: 1, justifyContent: 'center', alignItems: 'center', borderRadius: 10 }}>
-          <TouchableOpacity>
+      <TouchableOpacity style={{flexDirection:'row',justifyContent:'space-between',paddingVertical:20}} onPress={()=>navigation.navigate('Filter')}>
+          <View style={{ backgroundColor: '#F4F8F9', flexDirection: 'row',borderRadius:10 ,width:'83%'}}>
+            <Ionicons name='search-outline' size={20} style={{ padding: 10,marginTop:2 }} 
+            
+            />
+            <Text style={{ paddingVertical: 10,marginTop:2,color:'#ccc' }}> Search..</Text>
+            
+          </View>
+          <View style={{backgroundColor:'#F28a89',width:"15%",padding:1 ,justifyContent:'center',alignItems:'center',borderRadius:10}}>
+<View>
 
-            <Ionicons name='options-outline' color='#fff' size={20} />
-          </TouchableOpacity>
-        </View>
-      </View>
+<Ionicons name='options-outline' color='#fff' size={20} />
+</View>
+          </View>
+        </TouchableOpacity>
       <View style={{flexDirection:'row',paddingHorizontal:5}}>
 <MaterialIcons name='home-import-outline' color='#F28A89' style={{paddingVertical:15,paddingHorizontal:3}} size={40}/>
             <Text variant='headlineLarge' style={{fontFamily:'Poppins-Bold',textAlign:'center',paddingVertical:20}}>Houses For Rent </Text>

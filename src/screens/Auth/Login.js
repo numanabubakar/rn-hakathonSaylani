@@ -63,7 +63,7 @@ export default function Login({navigation}) {
                 })
                 dispatch({ type: 'LOGIN', payload: { user } })
 
-                console.log('User account created & signed in!');
+            
             })
             .catch(error => {
 
@@ -125,10 +125,6 @@ export default function Login({navigation}) {
             }).finally(() => {
                 setIsProcess(false)
             });
-
-
-        // setIsProcess(false)
-        console.log(email, password);
 
     }
     return (
