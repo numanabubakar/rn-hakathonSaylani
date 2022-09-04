@@ -1,11 +1,11 @@
 import { View, StyleSheet, TouchableOpacity, Image } from 'react-native'
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import { Text, Button, TextInput, } from 'react-native-paper';
 import auth from '@react-native-firebase/auth';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import Toast from 'react-native-toast-message';
 import { useAuthContext } from '../../context/AuthContext';
-
+import logo from "../../assets/Images/logo.png";
 export default function Login({navigation}) {
 
     const initialState = {
@@ -79,7 +79,7 @@ export default function Login({navigation}) {
 
                     })
                 }
-                if (errorCode === "auth/user-not-found") {
+                if (error.code === "auth/user-not-found") {
                     return (
                         Toast.show({
                             type: 'error',
@@ -92,7 +92,7 @@ export default function Login({navigation}) {
                         })
                     )
                 }
-                if (errorCode === "auth/wrong-password") {
+                if (error.code === "auth/wrong-password") {
                     return (
                         Toast.show({
                             type: 'error',
@@ -105,7 +105,7 @@ export default function Login({navigation}) {
                         })
                     )
                 }
-                if (errorCode === "auth/too-many-requests") {
+                if (error.code === "auth/too-many-requests") {
                     return (
                         Toast.show({
                             type: 'error',
@@ -135,14 +135,14 @@ export default function Login({navigation}) {
         <View style={styles.flexContainer}>
 
             <View style={styles.Container}>
-                <View style={{marginBottom:40}}>
-                    <Text variant='displayLarge' style={{fontWeight:'bold',color:'#023047'}}> Real State !</Text>
-                    <Text style={{color:'#023047',textAlign:'center'}}> Everything Property Managers Need!</Text>
+                <View style={{marginBottom:20}}>
+                    <Text variant='headlineLarge' style={{fontFamily:'Poppins-Bold',color:'#F28A89',textAlign:'center'}}> Real State !</Text>
+                    <Text style={{color:'#F28A89',textAlign:'center',fontFamily:'Poppins-Regular'}}> Everything Property Managers Need!</Text>
 
                 </View>
-                {/* <Image source={Hello}  style={{width:100,height:70,marginBottom:20,}}/> */}
+                <Image source={logo}  style={{width:150,height:100,marginBottom:20,}}/>
                 <View style={{ marginBottom:10 }}>
-                    <Text variant='displaySmall' style={{ color: '#023047', fontWeight: 'bold', textAlign:'center'}} >Login Here
+                    <Text variant='titleLarge' style={{ color: '#F28A89', fontFamily: 'Poppins-Bold', textAlign:'center'}} >Login Here
                     </Text>
                     
                 </View>
@@ -151,11 +151,11 @@ export default function Login({navigation}) {
                     <TextInput
                         mode='outlined'
                         label="Email"
-                        underlineColor='#023047'
-                        outlineColor='#023047'
-                        left={<TextInput.Icon name='at'  />}     
-                        // underlineColorAndroid='#023047'
-                        activeOutlineColor='#023047'
+                        underlineColor='#F28A89'
+                        outlineColor='#F28A89'
+                        left={<TextInput.Icon name='at' color='#F28A89' />}     
+                        // underlineColorAndroid='#F28A89'
+                        activeOutlineColor='#F28A89'
                         //   right={<TextInput.Affix  />}
                         onChangeText={(val) => handleChange('email', val)}
                         keyboardType='email-address'
@@ -166,12 +166,12 @@ export default function Login({navigation}) {
                     <TextInput
                         mode='outlined'
                         label="Password"
-                        underlineColor='#023047'
-                        outlineColor='#023047'
-                        activeOutlineColor='#023047'
+                        underlineColor='#F28A89'
+                        outlineColor='#F28A89'
+                        activeOutlineColor='#F28A89'
                         onChangeText={(val) => handleChange('password', val)}
                         left={<TextInput.Icon name='lock' />}
-                        right={<TextInput.Icon color='#023047' name={showPass ? 'eye-off' : 'eye'} onPress={() => setShowPass(!showPass)} />}
+                        right={<TextInput.Icon color='#F28A89' name={showPass ? 'eye-off' : 'eye'} onPress={() => setShowPass(!showPass)} />}
                         secureTextEntry={showPass}
                         style={styles.TextInput}
                     />
@@ -179,12 +179,13 @@ export default function Login({navigation}) {
                 <View>
 
                 </View>
-                <Button mode='contained' style={styles.loginBtn} buttonColor='#023047' 
+                <Button mode='contained' style={styles.loginBtn} buttonColor='#F28A89' 
                 textColor='#8ecae6' onPress={handleLogin} loading={isProcess} disabled={isProcess} >
                     <Text style={{ fontWeight: 'bold',color:'#8ecae6' }}>
                         {!isProcess ? <>
-                            <Ionicons size={18} name='log-in-outline' />
-                            <Text style={{ color:'#8ecae6',fontSize:15 }}> LOGIN</Text>
+                            <Ionicons size={18} name='log-in-outline'
+                            color={'#fff'} />
+                            <Text style={{ color:'#fff',fontSize:15 ,fontFamily: 'Poppins-Bold'}}> LOGIN</Text>
                         </> : <></>}
                     </Text>
                 </Button>
@@ -193,7 +194,7 @@ export default function Login({navigation}) {
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-                    <Text style={{ color: '#000', fontWeight: 'bold' }}> Don't Have an Account ? </Text>
+                    <Text style={{ color: '#000', fontFamily: 'Poppins-Bold' }}> Don't Have an Account ? </Text>
                 </TouchableOpacity>
 
             </View>
@@ -223,6 +224,7 @@ const styles = StyleSheet.create({
 
         width: "90%",
         marginBottom: 10,
+        fontFamily: 'Poppins-Bold'
     },
 
     TextInput: {
@@ -231,6 +233,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'transparent',
         // padding: 5,
         marginLeft: 5,
+        fontFamily: 'Poppins-Bold'
 
 
     },
@@ -238,6 +241,7 @@ const styles = StyleSheet.create({
         height: 30,
         marginBottom: 30,
         color: '#000',
+        fontFamily: 'Poppins-Regular'
     },
     loginBtn:
     {        

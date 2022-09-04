@@ -30,7 +30,7 @@ const handleSend=()=>{
       visibilityTime:2000,
       bottomOffset:30
     })
-    navigation.navigate('SignIn')
+    navigation.navigate('Login')
   }).catch(err=> console.log(err) )
 
   
@@ -66,7 +66,7 @@ const handleSend=()=>{
                         // underlineColorAndroid='#023047'
                         activeOutlineColor='#023047'
                         //   right={<TextInput.Affix  />}
-                        onChangeText={(val) => handleChange('email', val)}
+                        onChangeText={(val) => setEmail(val)}
                         keyboardType='email-address'
                         style={styles.TextInput}
                     />

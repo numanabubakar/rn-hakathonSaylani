@@ -1,13 +1,15 @@
-import { View,Image, ScrollView, StyleSheet, Dimensions,TextInput,ActivityIndicator ,TouchableOpacity} from 'react-native'
+import { View,Image, ScrollView, StyleSheet, Dimensions,TextInput,ActivityIndicator } from 'react-native'
 import {Button, Text} from 'react-native-paper'
 import React, { useEffect, useState } from 'react'
 import firestore from '@react-native-firebase/firestore';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import logo from "../../../assets/Images/logo.png";
+
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
+import { TouchableOpacity } from 'react-native-gesture-handler';
 const {width: screenWidth} = Dimensions.get('window');
-export default function Houses({navigation}) {
+export default function Appartments({navigation}) {
 const [products,setProducts]=useState([])
 const [isLoading,setIsLoading ]=useState(true)
 
@@ -33,11 +35,12 @@ const [isLoading,setIsLoading ]=useState(true)
             ProductData()
           },[])
           const SaleType = products.filter((item,index)=>{
-            if(item.Type === 'For Sale'){
+            if(item.Type === 'Appartments'){
           return item
             }
            })
 
+         
 
   return (
         <ScrollView style={{backgroundColor:'#fff',padding:20}} >
@@ -47,25 +50,21 @@ const [isLoading,setIsLoading ]=useState(true)
           <Ionicons  name="arrow-back-circle" color='#Fff' size={32}></Ionicons>
 
         </View>
-        <TouchableOpacity style={{flexDirection:'row',justifyContent:'space-between',paddingVertical:20}} onPress={()=>navigation.navigate('Filter')}>
+        <View style={{flexDirection:'row',justifyContent:'space-between',paddingVertical:20}}>
           <View style={{ backgroundColor: '#F4F8F9', flexDirection: 'row',borderRadius:10 ,width:'83%'}}>
-            <Ionicons name='search-outline' size={20} style={{ padding: 10,marginTop:2 }} 
-            
-            />
-            <TextInput  placeholder='Search...' 
-             />
-            
+            <Ionicons name='search-outline' size={20} style={{ padding: 10,marginTop:2 }} />
+            <TextInput  placeholder='Search...'/>
           </View>
           <View style={{backgroundColor:'#F28a89',width:"15%",padding:1 ,justifyContent:'center',alignItems:'center',borderRadius:10}}>
-<View>
+<TouchableOpacity>
 
 <Ionicons name='options-outline' color='#fff' size={20} />
-</View>
+</TouchableOpacity>
           </View>
-        </TouchableOpacity>
-        <View style={{flexDirection:'row',paddingHorizontal:5}}>
-<MaterialIcons name='home-export-outline' color='#F28A89' style={{paddingVertical:15,paddingHorizontal:3}} size={40}/>
-            <Text variant='headlineLarge' style={{fontFamily:'Poppins-Bold',textAlign:'center',paddingVertical:20}}>Houses For Sale </Text>
+        </View>
+        <View style={{flexDirection:'row',paddingHorizontal:5,justifyContent:'center',alignItems:'center'}}>
+<MaterialIcons name='home-city-outline' color='#F28A89' style={{paddingVertical:15,paddingHorizontal:3}} size={40}/>
+            <Text variant='headlineLarge' style={{fontFamily:'Poppins-Bold',textAlign:'center',paddingVertical:20}}>Appartments</Text>
         </View>
 
     <View style={styles.container}>
@@ -88,7 +87,7 @@ const [isLoading,setIsLoading ]=useState(true)
     </View>
     <View style={{flexDirection:'row',justifyContent:'space-between'}}>
         <Text style={styles.title} >
-        {item.Price} PKR 
+        {item.Price} PKR /month
         </Text>
         <Button onPress={()=>navigation.navigate('ItemDetail',{item})} style={{borderRadius:0,justifyContent:'flex-end',alignItems:'flex-end',}}> 
 

@@ -53,9 +53,9 @@ const MyCarousel = props => {
         </Text>
         <View style={{flexDirection:'row',paddingHorizontal:5}}>
           <Ionicons name='location' size={15}/>
-          <Text>{item.Location} </Text>
+          <Text style={{fontFamily:'Poppins-Regular'}}>{item.Location} </Text>
         </View>
-        <Text style={{paddingHorizontal:5,fontWeight:'bold',fontSize:12,color:'#023047'}}>Price :{item.Price} PKR</Text>
+        <Text style={{paddingHorizontal:5,fontSize:12,color:'#023047',fontFamily:'Poppins-Bold'}}>Price :{item.Price} PKR</Text>
       </View>
     );
   };
@@ -71,7 +71,7 @@ const MyCarousel = props => {
         renderItem={renderItem}
         hasParallaxImages={true}
         autoplay={true}
-        
+        loop={true}
       />
     </View>
   );
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   title:{
-    fontWeight:'bold',
+    fontFamily:'Poppins-Bold',
 paddingHorizontal:5,
 fontSize:15,
 color:'#023047'

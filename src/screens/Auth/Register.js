@@ -1,4 +1,4 @@
-import { View, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, StyleSheet, TouchableOpacity ,Image} from 'react-native'
 import React, { useState } from 'react'
 import { Text ,Button,TextInput} from 'react-native-paper';
 import auth from '@react-native-firebase/auth';
@@ -7,6 +7,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import  Toast  from 'react-native-toast-message';
 import firestore from '@react-native-firebase/firestore';
 import firebase from "@react-native-firebase/app"
+import logo from "../../assets/Images/logo.png";
+
 export default function Register({navigation}) {
     const initialState = {
         fullName:'',
@@ -25,10 +27,86 @@ export default function Register({navigation}) {
     
     const handleRegister=()=>{
       setIsProcess(true)
-      const {email,password}=state ;
+      const {fullName,userName,email,password,phoneNo}=state ;
+      if(!fullName){
+        setIsProcess(false)
+        return(
+      
+          Toast.show({
+            type: 'error',
+            text1: "Name ERROR",
+            text2: 'Please Add Full Name',
+            position: 'top',
+            visibilityTime: 3000,
+            bottomOffset: 30
+          })
+          )
+      }
+      else if(!userName){
+        setIsProcess(false)
+        return(
+      
+          Toast.show({
+            type: 'error',
+            text1: "Username ERROR",
+            text2: 'Please Add Username',
+            position: 'top',
+            visibilityTime: 3000,
+            bottomOffset: 30
+          })
+          )
+      }
+      else if(!phoneNo || phoneNo.length < 6){
+        setIsProcess(false)
+        return(
+      
+          Toast.show({
+            type: 'error',
+            text1: "Phone No ERROR",
+            text2: 'Phone Number Must be Upto 5 Digit',
+            position: 'top',
+            visibilityTime: 3000,
+            bottomOffset: 30
+          })
+          )
+      }
+      if(!email){
+        setIsProcess(false)
+        return(
+      
+          Toast.show({
+            type: 'error',
+            text1: "Email ERROR",
+            text2: 'Please Add Email',
+            position: 'top',
+            visibilityTime: 3000,
+            bottomOffset: 30
+          })
+          )
+      }
+      else if(!password){
+        setIsProcess(false)
+        return(
+      
+          Toast.show({
+            type: 'error',
+            text1: "Password ERROR",
+            text2: 'Please Add Password',
+            position: 'top',
+            visibilityTime: 3000,
+            bottomOffset: 30
+          })
+          )
+      }
+      
+
       auth()
       .createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
+        userCredential.user.updateProfile({
+          displayName:fullName,
+          
+        })
         const user =userCredential.user
         console.log(user)
         createUserProfile(user)
@@ -88,6 +166,11 @@ export default function Register({navigation}) {
 
     const createUserProfile = (user) => {
         const {fullName,userName,phoneNo}= state;
+
+        
+       
+
+
         let formData = {
             fullName: fullName,
             userName: userName,
@@ -127,14 +210,14 @@ export default function Register({navigation}) {
     <View style={styles.flexContainer}>
 
     <View style={styles.Container}>
-        <View style={{marginBottom:20}}>
-            <Text variant='displayLarge' style={{fontWeight:'bold',color:'#023047'}}> Real State !</Text>
-            <Text style={{color:'#023047',textAlign:'center'}}> Everything Property Managers Need!</Text>
+        <View style={{marginBottom:10}}>
+            <Text variant='headlineLarge' style={{fontFamily:'Poppins-Bold',color:'#F28A89',textAlign:'center'}}> Real State !</Text>
+            <Text style={{color:'#F28A89',textAlign:'center',fontFamily:'Poppins-Regular'}}> Everything Property Managers Need!</Text>
 
         </View>
-        {/* <Image source={Hello}  style={{width:100,height:70,marginBottom:20,}}/> */}
+        <Image source={logo}  style={{width:100,height:70,}}/>
         <View style={{ marginBottom:10 }}>
-            <Text variant='displaySmall' style={{ color: '#023047', fontWeight: 'bold', textAlign:'center'}} >Register Here
+            <Text variant='titlelarge' style={{ color: '#F28A89', fontFamily:'Poppins-Bold', textAlign:'center'}} >Register Here
             </Text>
             
         </View>
@@ -143,11 +226,11 @@ export default function Register({navigation}) {
             <TextInput
                 mode='outlined'
                 label="Full Name"
-                underlineColor='#023047'
-                outlineColor='#023047'
-                left={<TextInput.Icon  name='account' />}     
-                // underlineColorAndroid='#023047'
-                activeOutlineColor='#023047'
+                underlineColor='#F28A89'
+                outlineColor='#F28A89'
+                left={<TextInput.Icon  name='account' color={'#f289a8'} />}     
+                // underlineColorAndroid='#F28A89'
+                activeOutlineColor='#F28A89'
                 //   right={<TextInput.Affix  />}
                 onChangeText={(val) => handleChange('fullName', val)}
                 style={styles.TextInput}
@@ -158,11 +241,11 @@ export default function Register({navigation}) {
             <TextInput
                 mode='outlined'
                 label="Username"
-                underlineColor='#023047'
-                outlineColor='#023047'
+                underlineColor='#F28A89'
+                outlineColor='#F28A89'
                 left={<TextInput.Icon name='account-circle'  />}     
-                // underlineColorAndroid='#023047'
-                activeOutlineColor='#023047'
+                // underlineColorAndroid='#F28A89'
+                activeOutlineColor='#F28A89'
                 //   right={<TextInput.Affix  />}
                 onChangeText={(val) => handleChange('userName', val)}
 
@@ -174,11 +257,11 @@ export default function Register({navigation}) {
             <TextInput
                 mode='outlined'
                 label="Email"
-                underlineColor='#023047'
-                outlineColor='#023047'
+                underlineColor='#F28A89'
+                outlineColor='#F28A89'
                 left={<TextInput.Icon name='at'  />}     
-                // underlineColorAndroid='#023047'
-                activeOutlineColor='#023047'
+                // underlineColorAndroid='#F28A89'
+                activeOutlineColor='#F28A89'
                 //   right={<TextInput.Affix  />}
                 onChangeText={(val) => handleChange('email', val)}
                 keyboardType='email-address'
@@ -189,12 +272,12 @@ export default function Register({navigation}) {
             <TextInput
                 mode='outlined'
                 label="Password"
-                underlineColor='#023047'
-                outlineColor='#023047'
-                activeOutlineColor='#023047'
+                underlineColor='#F28A89'
+                outlineColor='#F28A89'
+                activeOutlineColor='#F28A89'
                 onChangeText={(val) => handleChange('password', val)}
                 left={<TextInput.Icon name='lock' />}
-                right={<TextInput.Icon color='#023047' name={showPass ? 'eye-off' : 'eye'} onPress={() => setShowPass(!showPass)} />}
+                right={<TextInput.Icon color='#F28A89' name={showPass ? 'eye-off' : 'eye'} onPress={() => setShowPass(!showPass)} />}
                 secureTextEntry={showPass}
                 style={styles.TextInput}
             />
@@ -204,11 +287,11 @@ export default function Register({navigation}) {
 <TextInput
     mode='outlined'
     label="Phone No"
-    underlineColor='#023047'
-    outlineColor='#023047'
+    underlineColor='#F28A89'
+    outlineColor='#F28A89'
     left={<TextInput.Icon name='phone'  />}     
-    // underlineColorAndroid='#023047'
-    activeOutlineColor='#023047'
+    // underlineColorAndroid='#F28A89'
+    activeOutlineColor='#F28A89'
     //   right={<TextInput.Affix  />}
     onChangeText={(val) => handleChange('phoneNo', val)}
     keyboardType='numeric'
@@ -218,18 +301,18 @@ export default function Register({navigation}) {
         <View>
 
         </View>
-        <Button mode='contained' style={styles.loginBtn} buttonColor='#023047' 
+        <Button mode='contained' style={styles.loginBtn} buttonColor='#F28A89' 
         textColor='#8ecae6' onPress={handleRegister} loading={isProcess} disabled={isProcess} >
-            <Text style={{ fontWeight: 'bold',color:'#8ecae6' }}>
+            <Text style={{ fontWeight: 'bold',color:'#fff' }}>
                 {!isProcess ? <>
                     <Ionicons size={18} name='log-in-outline' />
-                    <Text style={{ color:'#8ecae6',fontSize:15 }}> Register</Text>
+                    <Text style={{ color:'#fff',fontSize:15,fontFamily: 'Poppins-Bold'  }}> Register</Text>
                 </> : <></>}
             </Text>
         </Button>
 
         <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-            <Text style={{ color: '#000', fontWeight: 'bold' }}> Already Have an Account ? </Text>
+            <Text style={{ color: '#000', fontFamily: 'Poppins-Bold' }}> Already Have an Account ? </Text>
         </TouchableOpacity>
 
     </View>
