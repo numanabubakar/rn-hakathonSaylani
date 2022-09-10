@@ -75,13 +75,13 @@ const FavData = favHouses.map((prod,index)=>{
                             <FontAwesome5 name='ruler-combined' size={18} color='#F28A89' style={{backgroundColor:'#FFE6E7',padding:10,}}  />
                                 <Text style={styles.text}>{itemArea}</Text>
                             <MaterialIcons name='food-fork-drink' size={18} color='#F28A89' style={{backgroundColor:'#FFE6E7',padding:10,}}  />
-                                <Text style={styles.text}>{item.kitchens} Kitchens</Text>
+                                <Text style={styles.text}>{item.Kitchens} Kitchens</Text>
                                  </View>
                             <View style={[styles.facilities,{justifyContent:'flex-start'}]}>
                             
                             
                             <MaterialIcons name='bathtub-outline' size={18} color='#F28A89' style={{backgroundColor:'#FFE6E7',padding:10,}}  />
-                                <Text style={styles.text}>{item.baths} Baths</Text>
+                                <Text style={styles.text}>{item.Baths} Baths</Text>
                                  </View>
                             
                 

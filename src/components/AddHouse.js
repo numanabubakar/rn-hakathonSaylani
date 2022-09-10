@@ -1,4 +1,4 @@
-/* eslint-disable prettier/prettier */
+
 import React, { useState } from 'react';
 import { Image, ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
@@ -45,14 +45,17 @@ const AddHouse = ({ navigation }) => {
 
     if (!image) {
 setIsProcess(false)
-      Toast.show({
-        type: 'error',
-        text1: "IMAGE ERROR",
-        text2: 'Please Add Image',
-        position: 'top',
-        visibilityTime: 3000,
-        bottomOffset: 30
-      })
+return(
+
+  Toast.show({
+    type: 'error',
+    text1: "IMAGE ERROR",
+    text2: 'Please Add Image',
+    position: 'top',
+    visibilityTime: 3000,
+    bottomOffset: 30
+  })
+  )
     }
 
 
@@ -250,7 +253,24 @@ else if(!phoneNo || phoneNo.length < 10){
           visibilityTime: 3000,
           bottomOffset: 30,
         })
+        
         navigation.navigate('Home')
+setState({
+  Title: '',
+  Location: '',
+  Price: '',
+  Desc: '',
+  NoofBedrooms: '',
+  Url: '',
+  Area: '',
+  kitchens: '',
+  baths: '',
+  phoneNo: ''
+})
+setImage('')
+setPropertyType('')
+
+
       });
 
   }
@@ -301,6 +321,7 @@ else if(!phoneNo || phoneNo.length < 10){
             style={styles.input}
             mode="fill"
             label={'Product Title'}
+            value={state.Title}
             onChangeText={(val) => handleChange('Title', val)}
             keyboardType="numbers-and-punctuation"
             activeUnderlineColor='#F28A89'
@@ -312,6 +333,7 @@ else if(!phoneNo || phoneNo.length < 10){
             style={styles.input}
             mode="fill"
             label={'Location'}
+            value={state.Location}
             onChangeText={(val) => handleChange('Location', val)}
             keyboardType="numbers-and-punctuation"
             left={<TextInput.Icon name='google-maps' color='#F28A89' />}
@@ -324,6 +346,7 @@ else if(!phoneNo || phoneNo.length < 10){
             style={[styles.input,]}
             mode="fill"
             label={'Price'}
+            value={state.Price}
             left={<TextInput.Icon name='cash' color='#F28A89' />}
             onChangeText={(val) => handleChange('Price', val)}
             keyboardType="numbers-and-punctuation"
@@ -331,21 +354,10 @@ else if(!phoneNo || phoneNo.length < 10){
             activeOutlineColor='#F28A89'
             placeholderTextColor='#F28A89'
           />
-          {/* <TextInput
-              style={[styles.input,]}
-              mode="fill"
-              onChangeText={(val) => handleChange('Type', val)}
-              label={'Property Type'}
-              left={<TextInput.Icon  name='greenhouse' color='#F28A89'/>}
-              keyboardType="numbers-and-punctuation"
-              activeUnderlineColor='#F28A89'
-              activeOutlineColor='#F28A89'
-              placeholderTextColor='#F28A89' */}
-          {/* /> */}
+          
           <View style={{ flexDirection: 'row', backgroundColor: '#fff', marginBottom: 5, borderBottomWidth: 1, borderBottomColor: '#0008' }}>
             <MaterialCommunityIcons name='greenhouse' style={{ padding: 10 }} size={25} color='#000' />
             <SelectList
-              // onSelect={() => alert(propertyType)}
               placeholder='Property Type'
               setSelected={setPropertyType}
               data={data}
@@ -361,6 +373,7 @@ else if(!phoneNo || phoneNo.length < 10){
             label={'No Of Bedrooms'}
             onChangeText={(val) => handleChange('NoofBedrooms', val)}
             keyboardType="number-pad"
+            value={state.NoofBedrooms}
             activeUnderlineColor='#F28A89'
             left={<TextInput.Icon name='bed' />}
             activeOutlineColor='#F28A89'
@@ -378,6 +391,7 @@ else if(!phoneNo || phoneNo.length < 10){
               left={<TextInput.Icon name='bathtub-outline' />}
               activeOutlineColor='#F28A89'
               placeholderTextColor='#F28A89'
+              value={state.baths}
             />
             <TextInput
               style={[styles.input, { width: '48%', marginLeft: 5 }]}
@@ -386,6 +400,7 @@ else if(!phoneNo || phoneNo.length < 10){
               onChangeText={(val) => handleChange('kitchens', val)}
               keyboardType="number-pad"
               activeUnderlineColor='#F28A89'
+              value={state.kitchens}
               left={<TextInput.Icon name='food-fork-drink' />}
               activeOutlineColor='#F28A89'
               placeholderTextColor='#F28A89'
@@ -401,6 +416,7 @@ else if(!phoneNo || phoneNo.length < 10){
             activeUnderlineColor='#F28A89'
             activeOutlineColor='#F28A89'
             placeholderTextColor='#F28A89'
+            value={state.Area}
           />
           <TextInput
             style={[styles.input]}
@@ -412,6 +428,7 @@ else if(!phoneNo || phoneNo.length < 10){
             activeUnderlineColor='#F28A89'
             activeOutlineColor='#F28A89'
             placeholderTextColor='#F28A89'
+            value={state.phoneNo}
           />
 
           <TextInput
@@ -423,6 +440,7 @@ else if(!phoneNo || phoneNo.length < 10){
             left={<TextInput.Icon name='file-document-outline' />}
             multiline={true}
             numberOfLines={4}
+            value={state.Desc}
             activeUnderlineColor='#F28A89'
             activeOutlineColor='#F28A89'
             placeholderTextColor='#F28A89'

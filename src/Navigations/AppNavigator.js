@@ -43,8 +43,9 @@ export default function AppNavigator() {
           options={{ tabBarIcon: ({ focused, color, size }) => <Ionicons name={focused ? 'home' : 'home-outline'} size={size} color={color} /> }}
         />
         <Tab.Screen name='AddHouse'
-          options={{ tabBarIcon: ({ focused, color, size }) => <Ionicons name={focused ? 'add-circle' : 'add-circle-outline'} size={size} color={color} /> }}
-          component={AddHouse} />
+          options={{ tabBarIcon: ({ focused, color, size }) => <Ionicons name={focused ? 'add-circle' : 'add-circle-outline'} size={35} color={color} />  }}
+          component={AddHouse}
+           />
         <Tab.Screen name='Favourite'
           component={WishList}
           options={{

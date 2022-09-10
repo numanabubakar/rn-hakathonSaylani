@@ -112,7 +112,7 @@ export default function RentHouse({ navigation }) {
                     <Text style={{ textAlign: 'center', fontFamily: 'Poppins-Regular' }}> {item.NoofBedrooms} Beds </Text>
                     <View style={{justifyContent:'center',alignItems:'center',flexDirection:'row',}}>
   <MaterialIcons name='food-fork-drink' color='#F28A89' size={15} style={{backgroundColor:'#FFE6E7',padding:5,borderRadius:10,marginBottom:5}}  />
-  <Text style={{textAlign:'center',fontFamily:'Poppins-Regular'}}> {item.kitchens} Kitchens </Text>
+  <Text style={{textAlign:'center',fontFamily:'Poppins-Regular'}}> {item.Kitchens} Kitchens </Text>
 </View>
                   </View>
                   <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row' }}>
