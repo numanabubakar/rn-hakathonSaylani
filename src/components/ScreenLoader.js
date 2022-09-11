@@ -1,10 +1,11 @@
-import { View, Text, StyleSheet, ActivityIndicator } from 'react-native'
+import { View, StyleSheet } from 'react-native'
+import Lottie from 'lottie-react-native'
 import React from 'react'
 
 export default function ScreenLoader() {
   return (
     <View style={styles.Container}>
-      <ActivityIndicator size='large' color='#F28A89' />
+      <Lottie source={require('../assets/Images/house.json')} autoPlay loop />
     </View>
   )
 }

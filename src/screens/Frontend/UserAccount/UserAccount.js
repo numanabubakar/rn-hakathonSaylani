@@ -1,10 +1,12 @@
-import { StyleSheet, View, ActivityIndicator, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, ScrollView, TouchableOpacity } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { Text, Button, TextInput } from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import firestore from '@react-native-firebase/firestore';
 import { useAuthContext } from '../../../context/AuthContext';
 import  Toast  from 'react-native-toast-message';
+import SkeletonPlaceholder from "react-native-skeleton-placeholder";
+
 
 
 export default function UserAccount({ navigation }) {
@@ -129,9 +131,31 @@ const HandleUpdate =()=>{
       </View>
       <View style={{ justifyContent: 'center', alignItems: "center", paddingVertical: 20 }}>
         {isLoading ?
-          <View style={{ justifyContent: 'center', alignItems: 'center', flex: 1 }}>
-            <ActivityIndicator size='large' color='#F28A89' />
-          </View>
+          
+          <SkeletonPlaceholder>
+            <View style={{
+padding:20
+            }}>
+              <View style={{
+                width:  40,
+                height: 35,
+                borderRadius:5,
+                marginBottom: 10,
+                alignSelf:'flex-end'
+              }} />
+              <ScrollView >
+              
+
+                  <View style={{ width: 290, height: 50, borderRadius: 4 ,marginBottom:5}} />
+                  <View style={{ width: 290, height: 50, borderRadius: 4 ,marginBottom:5}} />
+                  <View style={{ width: 290, height: 50, borderRadius: 4 ,marginBottom:5}} />
+                  <View style={{ width: 290, height: 50, borderRadius: 4 ,marginBottom:5}} />
+      
+                
+              </ScrollView>
+            </View>
+            
+          </SkeletonPlaceholder>
           :
           <View style={{ width: '100%', alignItems: "center", justifyContent: 'center' }}>
             <TouchableOpacity onPress={HandleIcon} style={{ alignSelf: 'flex-end', paddingHorizontal: 10 }}>
@@ -250,10 +274,9 @@ const styles = StyleSheet.create({
   },
 
   TextInput: {
-    // height: 20,
-    // flex: 1,
+  
     backgroundColor: 'transparent',
-    // padding: 5,
+    
     marginLeft: 5,
 
 

@@ -16,6 +16,8 @@ import React, { useEffect, useState } from 'react';
 import firestore from '@react-native-firebase/firestore';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import SkeletonPlaceholder from "react-native-skeleton-placeholder";
+
 
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 
@@ -138,9 +140,76 @@ export default function Filter({ navigation }) {
           </View>
         </View>
 
-        {isLoading ?  <View style={{justifyContent:'center',alignItems:'center',flex:1,padding:20}}>
-      <ActivityIndicator size='large' color='#F28A89' />
-</View> :
+        {isLoading ? 
+        <SkeletonPlaceholder>
+        <View style={{
+          alignItems: "center",
+          borderBottomWidth: 1,
+          borderColor: '#ccc9',
+          marginTop:15
+
+        }}>
+          <View style={{
+            width: screenWidth - 60,
+            height: screenWidth - 225, borderTopRightRadius: 15,
+            borderTopLeftRadius: 15,
+            marginBottom: 10,
+            justifyContent: 'center'
+          }} />
+          <View >
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+
+              <View style={{ width: 190, height: 20, borderRadius: 4 }} />
+              <View style={{ width: 30, height: 20, borderRadius: 4 }} />
+            </View>
+            <View
+              style={{ marginTop: 6, width: 290, height: 20, borderRadius: 4 }}
+            />
+            <View style={{ flexDirection: 'row' }}>
+              <View style={{ marginTop: 6, width: 80, height: 20, borderRadius: 4 }} />
+              <View style={{ flexDirection: 'row' }}>
+
+                <View style={{ marginTop: 6, marginLeft: 6, width: 80, height: 20, borderRadius: 4 }} />
+                <View style={{ marginTop: 6, marginLeft: 6, width: 80, height: 20, borderRadius: 4 }} />
+              </View>
+            </View>
+          </View>
+        </View>
+        <View style={{
+          alignItems: "center",
+          borderBottomWidth: 1,
+          marginTop:13,
+          borderBottomWidth:1,
+          borderBottomColor:'#ccc9'
+        }}>
+          <View style={{
+            width: screenWidth - 60,
+            height: screenWidth - 225, borderTopRightRadius: 15,
+            borderTopLeftRadius: 15,
+            marginBottom: 10,
+            justifyContent: 'center'
+          }} />
+          <View >
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+
+              <View style={{ width: 190, height: 20, borderRadius: 4 }} />
+              <View style={{ width: 30, height: 20, borderRadius: 4 }} />
+            </View>
+            <View
+              style={{ marginTop: 6, width: 290, height: 20, borderRadius: 4 }}
+            />
+            <View style={{ flexDirection: 'row' }}>
+              <View style={{ marginTop: 6, width: 80, height: 20, borderRadius: 4 }} />
+              <View style={{ flexDirection: 'row' }}>
+
+                <View style={{ marginTop: 6, marginLeft: 6, width: 80, height: 20, borderRadius: 4 }} />
+                <View style={{ marginTop: 6, marginLeft: 6, width: 80, height: 20, borderRadius: 4 }} />
+              </View>
+            </View>
+          </View>
+        </View>
+      </SkeletonPlaceholder>
+ :
         <View style={{ flex: 1 }}>
           <View style={styles.itemContainer}>
             <FlatList style={styles.flatList}
